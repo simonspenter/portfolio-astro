@@ -1,0 +1,127 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+const projects = [
+  {
+    title: "Pleaz Dashboard",
+    href: "/projects/pleaz_powerbi/",
+    img: "/public/assets/project thumbnails/Pleaz dashboard_002.jpg",
+    blurb:
+      "Power BI dashboards visualizing product and business metrics for Product, Content, Sales and leadership at Pleaz. Built collaboratively with stakeholders.",
+    tags: ["Power BI", "DAX", "Stakeholder Collab"],
+    cta: "View case",
+  },
+  {
+    title: "Flamme Rouge App",
+    href: "/projects/flamme_rouge_app/",
+    img: "/public/assets/project thumbnails/flamme-rouge-app-thumbnail.png",
+    blurb:
+      "Scoreboard web app for the Flamme Rouge board game. Built with Flask, deployed on Azure App Service, backed by Azure SQL.",
+    tags: ["Flask", "Azure", "Azure SQL"],
+    cta: "View case",
+  },
+  {
+    title: "Data Manipulation Script",
+    href: "/projects/dst_data_script/",
+    img: "/public/assets/project thumbnails/DST-script-thumbnail.png",
+    blurb:
+      "Extensive Python pipeline to retrieve project data from Danmarks Statistik and combine it with population datasets for analysis.",
+    tags: ["Python", "pandas", "ETL"],
+    cta: "View case",
+  },
+  {
+    title: "Arbitrage Bet Finder",
+    href: "/projects/arbitrage_finder/",
+    img: "/public/assets/project thumbnails/arbitrage-finder-thumbnail.png",
+    blurb:
+      "Flask web app that integrates with The Odds API to fetch bookmaker odds, detect arbitrage opportunities, and present them in a clean, interactive dashboard.",
+    tags: ["Flask", "APIs", "JavaScript"],
+    cta: "View case",
+  },
+  {
+    title: "This Portfolio",
+    href: "/",
+    img: "/public/assets/project thumbnails/portfolio-thumbnail.png",
+    blurb:
+      "The site you’re viewing—hand-built with Astro + Bootstrap, themed and deployed as a lightweight static site.",
+    tags: ["Astro", "Bootstrap", "Static"],
+    cta: "View home",
+  },
+  
+];
+
+const inDev = [
+
+  {
+    title: "AI Agents",
+    href: "#",
+    img: "/assets/ai_agents_preview.png",
+    blurb:
+      "Two agents in progress: 1) runs an Instagram page end-to-end (content, caption, tags, posting); 2) drafts and deploys demo sites for small businesses and links to a sales platform.",
+    tags: ["Automation", "LLMs", "Agents"],
+    cta: "In progress",
+  },
+];
+---
+
+<Layout title="Simons Computer Science Projects">
+  <div class="text-center mb-5">
+    <h1 class="mb-3">My Projects</h1>
+    <p class="text-muted">Here’s a showcase of my recent projects</p>
+  </div>
+
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+      {projects.map((p) => (
+        <div class="col">
+          <div class="card h-100 project-card">
+            <img src={p.img} class="card-img-top" alt={p.title} />
+            <div class="card-body">
+              <h5 class="card-title">{p.title}</h5>
+              <p class="card-text">{p.blurb}</p>
+
+              <div class="d-flex flex-wrap gap-2 mt-3">
+                {p.tags.map((tag) => (
+                  <span class="badge border">{tag}</span>
+                ))}
+              </div>
+            </div>
+            <div class="card-footer bg-white border-0">
+              <a href={p.href} class="btn btn-sm btn-primary">{p.cta}</a>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+
+
+      <!-- In development -->
+      <h2 class="h5 mt-5 mb-3">Projects in Development</h2>
+      <div class="row row-cols-1 row-cols-md-3 g-4">
+        {inDev.map((p) => (
+          <div class="col">
+            <article class="card project-card h-100">
+              {p.img && <img src={p.img} class="card-img-top" alt={p.title} loading="lazy" />}
+              <div class="card-body d-flex flex-column">
+                <h3 class="h6 mb-2">{p.title}</h3>
+                <p class="card-text small text-muted mb-3">{p.blurb}</p>
+                <div class="mb-3 d-flex flex-wrap gap-2">
+                  {p.tags.map((t) => (
+                    <span class="badge border">{t}</span>
+                  ))}
+                </div>
+                <div class="mt-auto">
+                  {p.href === "#" ? (
+                    <span class="btn btn-outline-secondary btn-sm disabled" aria-disabled="true">{p.cta}</span>
+                  ) : (
+                    <a class="btn btn-outline-secondary btn-sm" href={p.href}>{p.cta}</a>
+                  )}
+                </div>
+              </div>
+            </article>
+          </div>
+        ))}
+      </div>
+
+    </div>
+  </section>
+</Layout>

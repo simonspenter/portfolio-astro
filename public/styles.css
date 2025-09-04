@@ -1,0 +1,442 @@
+/* =========================================
+   THEME TOKENS (colors, spacing, etc.)
+   ========================================= */
+:root {
+  --theme-primary:  #6A4C93; /* eggplant purple (main accent / text highlights) */
+  --theme-secondary: #FF7F50; /* coral orange for hovers & accents */
+  --theme-dark:     #2E1F47; /* deep eggplant for headings */
+  --theme-light:    #FAF7F2; /* subtle creamy background */
+  --theme-muted:    #7a7a7a; /* muted gray for secondary text */
+
+  /* NEW: low-alpha versions for backgrounds */
+  --primary-04: rgba(106, 76, 147, 0.04);
+  --primary-06: rgba(106, 76, 147, 0.06);
+  --secondary-04: rgba(255, 107, 107, 0.04);
+  --secondary-06: rgba(255, 107, 107, 0.06);
+}
+
+
+/* =========================================
+   BASE / TYPOGRAPHY
+   (Montserrat is loaded in <head>)
+   ========================================= */
+html, body {
+  background: 
+    /* top-right soft eggplant haze */
+    radial-gradient(900px 500px at 95% -5%, var(--primary-06) 0%, transparent 60%),
+    /* bottom-left soft coral haze */
+    radial-gradient(700px 400px at -5% 95%, var(--secondary-06) 0%, transparent 60%),
+    /* slight vertical fade (eggplant → none) */
+    linear-gradient(180deg, var(--primary-04) 0%, transparent 40%),
+    var(--theme-light); /* creamy base */
+  color: var(--theme-dark);
+  line-height: 1.6;
+}
+
+/* Use on sections where you want extra-soft background */
+.bg-soft-wash {
+  background:
+    radial-gradient(600px 350px at 90% 0%, var(--primary-04) 0%, transparent 60%),
+    radial-gradient(500px 300px at 0% 100%, var(--secondary-04) 0%, transparent 60%),
+    transparent;
+  border-radius: 12px;
+}
+
+
+h1 {
+  font-size: 2.25rem;   /* bigger than default */
+  font-weight: 600;
+}
+
+h2, h3 {
+  letter-spacing: 0.3px;
+  color: var(--theme-dark);
+  font-family: 'Montserrat', sans-serif;
+}
+
+/* Main subtitle under your name */
+.site-subtitle {
+  font-family: 'Raleway', sans-serif; /* stronger font */
+  color: var(--theme-primary);
+  font-weight: 700;
+  font-size: 1.5rem;   /* increase size (default h2 was ~1.25rem) */
+  letter-spacing: 0.5px;
+  margin-top: 0.25rem;
+}
+
+/* Custom spacing scale */
+.mb-6 { margin-bottom: 4.5rem !important; }
+.mb-7 { margin-bottom: 6rem !important; }
+.mt-6 { margin-top: 4.5rem !important; }
+.mt-7 { margin-top: 6rem !important; }
+.pb-7 { padding-bottom: 6rem !important; }
+
+
+
+/* =========================================
+   NAVIGATION (right-aligned, floating, animated)
+   ========================================= */
+
+/* Right-aligned list */
+.main-nav {
+  display: flex;
+  align-items: center;
+  gap: 2rem;                 /* spacing between items */
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Base link styling */
+.main-nav .nav-link {
+  position: relative;
+  display: inline-block;
+  padding: 0.5rem 0;
+  text-decoration: none;
+  color: var(--theme-dark);
+  font-weight: 600;
+  text-transform: uppercase; /* ALL CAPS */
+  letter-spacing: 1px;
+  transition: color 0.2s ease;
+  font-family: 'Montserrat', sans-serif;
+}
+
+/* Animated underline for all nav links (except the arrow half) */
+.main-nav .nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -6px;
+  height: 2px;
+  background: var(--theme-secondary);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.25s ease;
+}
+
+/* Hover/focus */
+.main-nav .nav-link:hover,
+.main-nav .nav-link:focus {
+  color: var(--theme-secondary);
+}
+.main-nav .nav-link:hover::after,
+.main-nav .nav-link:focus::after {
+  transform: scaleX(1);
+}
+
+/* Active state */
+.main-nav .nav-link.active {
+  color: var(--theme-secondary);
+}
+.main-nav .nav-link.active::after {
+  transform: scaleX(1);
+}
+
+/* =========================
+   Split dropdown (Projects)
+   ========================= */
+/* Split dropdown layout */
+.split-dropdown {
+  display: flex;
+  align-items: center;
+}
+
+/* Arrow link: no underline, no bg, no shadow, no ring */
+.main-nav .dropdown-arrow {
+  padding-left: .35rem;
+  padding-right: 0;
+  background: transparent !important;
+  box-shadow: none !important;
+  border: none !important;
+  outline: none !important;
+  color: var(--theme-dark);
+}
+
+/* Disable our sliding underline on the arrow half */
+.main-nav .dropdown-arrow::after {
+  content: none !important;
+}
+
+/* Keep arrow icon neutral; don’t steal hover styles */
+.main-nav .dropdown-arrow:hover,
+.main-nav .dropdown-arrow:focus,
+.main-nav .dropdown-arrow:active {
+  background: transparent !important;
+  box-shadow: none !important;
+  outline: none !important;
+  color: var(--theme-dark); /* or var(--theme-secondary) if you want it to change */
+}
+
+/* Make sure clicks hit the link, not the icon’s interior */
+.main-nav .dropdown-arrow .bi {
+  pointer-events: none;
+}
+
+/* Optional: when dropdown is open, color the label like active */
+.split-dropdown.show > .nav-link:first-child {
+  color: var(--theme-secondary);
+}
+
+
+
+/* =========================
+   Mobile tweaks
+   ========================= */
+@media (max-width: 576px) {
+  .main-nav {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .main-nav .nav-link {
+    letter-spacing: 1px;
+    font-size: 0.95rem;
+  }
+}
+
+
+/* ---------- Areas of Interest ---------- */
+.interests-section {
+  margin-top: 4rem; /* extra spacing from section above */
+  background:
+    radial-gradient(600px 300px at 100% 0%, var(--primary-04) 0%, transparent 60%),
+    radial-gradient(500px 250px at 0% 100%, var(--secondary-04) 0%, transparent 60%),
+    transparent;
+  border-radius: 12px;
+}
+
+.interest{
+  background: rgba(255,255,255,0.85);
+  border: 1px solid rgba(0,0,0,0.05);
+  border-radius: 12px;
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+
+.interest:hover{
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+}
+
+/* Remove boxes, just keep icons + text clean */
+.interest-icon {
+  font-size: 2.2rem;
+  color: var(--theme-primary);
+  transition: color 0.2s ease;
+}
+
+
+.interest-icon:hover {
+  color: var(--theme-secondary);
+}
+
+
+/* =========================================
+   LINKS & BUTTONS
+   ========================================= */
+a {
+  color: var(--theme-secondary);
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+.btn {
+  font-weight: 600;
+  border-radius: 0.5rem;   /* pill-like corners */
+  letter-spacing: 0.5px;   /* subtle text spread */
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn-primary {
+  background-color: var(--theme-primary);
+  border-color: var(--theme-primary);
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(106, 76, 147, 0.3);
+}
+.btn-primary:hover {
+  background-color: #5A3C7A; /* darker eggplant */
+  border-color: #5A3C7A;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(106, 76, 147, 0.4);
+}
+
+.btn-outline-secondary {
+  color: var(--theme-secondary);
+  border-color: var(--theme-secondary);
+}
+.btn-outline-secondary:hover {
+  background-color: var(--theme-secondary);
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(255, 107, 107, 0.3);
+}
+
+
+/* =========================================
+   CARDS
+   ========================================= */
+.card {
+  background-color: rgba(255,255,255,0.85); /* subtle translucency */
+  border: 1px solid rgba(0,0,0,0.05);
+  backdrop-filter: saturate(120%) blur(2px); /* optional: gentle glassy feel */
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+}
+
+/* =========================================
+   BADGES (skills/interests)
+   ========================================= */
+.badge.border {
+  border-color: rgba(0,0,0,0.15) !important;
+  font-size: 0.9rem;
+  background-color: var(--theme-light);
+  color: var(--theme-dark);
+}
+
+/* =========================================
+   IMAGES / UTILITIES
+   ========================================= */
+img { max-width: 100%; height: auto; }
+.headshot { border-radius: 12px; } /* if you use a custom class */
+
+/* =========================================
+   FOOTER
+   ========================================= */
+footer {
+  background: linear-gradient(180deg, transparent, var(--primary-04));
+  color: var(--theme-muted);
+}
+
+/* =========================================
+   Project Cards
+   ========================================= */
+
+/* Ensure images sit nicely inside cards with padding */
+.project-card img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  border-radius: .5rem;               /* soft corners */
+  padding: .5rem;                     /* space between img & card */
+  background-color: var(--theme-light); /* subtle background edge */
+  transition: transform .25s ease;    /* smooth scaling */
+}
+
+/* Keep hover effect subtle: card lifts, image stays stable */
+.project-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+}
+
+.project-card:hover img {
+  transform: none; /* don’t zoom/stretch the image */
+}
+
+
+/* Project figures */
+.project-figure {
+  margin: 0;
+}
+.project-figure figcaption {
+  font-size: 0.95rem;
+  color: var(--theme-muted);
+  margin-top: 0.5rem;
+}
+
+/* Project case study visuals */
+.project-shot {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  padding: .5rem;
+  background: rgba(255,255,255,0.85);
+  border: 1px solid rgba(0,0,0,0.05);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+  margin-top: 1rem;
+}
+
+/* =========================================
+   Accordion DST project
+   ========================================= */
+
+/* DST extent accordion polish */
+.accordion-button { font-weight: 600; }
+.accordion-button:not(.collapsed) {
+  color: var(--theme-dark);
+  background: var(--theme-light);
+  box-shadow: none;
+}
+.accordion-item {
+  border: 1px solid rgba(0,0,0,.06);
+  border-radius: .5rem;
+  overflow: hidden;
+}
+.accordion-body pre {
+  background: rgba(0,0,0,.03);
+  border: 1px solid rgba(0,0,0,.05);
+  border-radius: .5rem;
+  padding: .75rem;
+  margin: 0;
+}
+
+/* ================================
+   Contact page polish
+   ================================ */
+.contact-card {
+  background: #fff;
+  border: 1px solid rgba(0,0,0,.06);
+  border-radius: 14px;
+  box-shadow: 0 6px 22px rgba(0,0,0,.06);
+}
+
+.text-accent {
+  color: var(--theme-secondary);
+}
+
+.link-underline-hover {
+  text-decoration: none;
+}
+.link-underline-hover:hover {
+  text-decoration: underline;
+}
+
+/* Social buttons */
+.social-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .35rem;
+  padding: .6rem 1rem;
+  border-radius: 999px;
+  font-weight: 600;
+  border: 1px solid transparent;
+  box-shadow: 0 4px 14px rgba(0,0,0,.06);
+  transition: transform .15s ease, box-shadow .2s ease, background .2s ease, color .2s ease;
+}
+.social-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 26px rgba(0,0,0,.08);
+  text-decoration: none;
+}
+
+/* LinkedIn / GitHub brand-ish styles using your theme */
+.social-btn.linkedin {
+  background: var(--theme-secondary);
+  color: #fff;
+}
+.social-btn.linkedin:hover {
+  filter: brightness(0.95);
+}
+
+.social-btn.github {
+  background: #fff;
+  color: var(--theme-dark);
+  border-color: rgba(0,0,0,.1);
+}
+.social-btn.github:hover {
+  background: var(--theme-light);
+}

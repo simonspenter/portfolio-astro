@@ -1,0 +1,144 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+<Layout title="Home">
+  <section class="py-4 bg-soft-wash">
+    <div class="container">
+      <div class="row g-4 align-items-start">
+        
+        <!-- LEFT: About me -->
+        <div class="col-12 col-md-8 order-md-1">
+          <h2 class="h4 mb-3">About Me</h2>
+
+            <!-- New wrapper class -->
+            <div class="about-me">
+              <p class="mb-3">
+                I’m a Data Analyst with experience working on digital products in both the public and private sector. 
+                At the Agency for Digital Government in Denmark, I’ve contributed to large national solutions such as <strong>MitID</strong>, <strong>Digital Post</strong>, and <strong>borger.dk</strong>. 
+                Earlier in my career, I worked with web platforms in the startup space, including <strong>Pleaz</strong>.
+              </p>
+
+              <p class="mb-3">
+                My work covers the full data workflow: collecting, processing, analyzing, and visualizing data. 
+                I have hands-on experience with <strong>Power BI</strong> for dashboards, <strong>Python (pandas, NumPy)</strong> for data wrangling, and <strong>SQL</strong> for working with databases. 
+              </p>
+
+              <p class="mb-3">
+                Beyond the technical side, I collaborate closely with teams across the organization to make sure they have the insights they need to succeed. 
+                What I enjoy most about being a data analyst is the blend of problem-solving, teamwork, and creating solutions that make data truly useful.
+              </p>
+            </div>
+
+            <!-- CTA Buttons centered horizontally -->
+            <div class="d-flex flex-wrap gap-3 mt-4 justify-content-center">
+              <a class="btn btn-primary btn-lg px-4 py-2" href="/projects/">View Projects</a>
+              <a class="btn btn-outline-secondary btn-lg px-4 py-2" href="/resume.pdf" target="_blank" rel="noopener">Resume (PDF)</a>
+              <a class="btn btn-outline-secondary btn-lg px-4 py-2" href="/contact/">Contact</a>
+            </div>
+          </div>
+
+
+        <!-- RIGHT: Headshot + quick info -->
+        <div class="col-12 col-md-4 order-md-2 text-center text-md-start">
+          <img
+            src="/assets/headshot.jpg"
+            alt="Portrait of Simon"
+            class="rounded-3 img-fluid shadow-sm mb-3"
+            style="max-width: 220px;"
+          />
+
+          <!-- Inline info list -->
+          <h6 class="text-uppercase text-muted small mb-2">At a glance</h6>
+          <ul class="list-unstyled mb-0">
+            <li class="mb-2">
+              <i class="bi bi-geo-alt me-2"></i>Copenhagen, DK
+            </li>
+            <li class="mb-2">
+              <i class="bi bi-linkedin me-2"></i>
+              <a href="https://www.linkedin.com/in/your-handle/" target="_blank" rel="noopener">LinkedIn</a>
+            </li>
+            <li>
+              <i class="bi bi-github me-2"></i>
+              <a href="https://github.com/your-handle" target="_blank" rel="noopener">GitHub</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Areas of Interest -->
+      <section class="py-5 mt-5 mb-5 interests-section">
+        <div class="container">
+          <h2 class="h4 text-center mb-1">Areas of Interest</h2>
+          <p class="text-center text-muted mb-4">A few things I enjoy working on</p>
+
+          <!-- First row -->
+          <div class="row row-cols-1 row-cols-md-3 g-5 mt-4">
+
+            <!-- Dashboards & Visualization -->
+            <div class="col text-center px-4">
+              <i class="bi bi-graph-up interest-icon"></i>
+              <h3 class="h6 mt-3 mb-2">Dashboards & Visualization</h3>
+              <p class="mb-0 small text-muted">
+                Building clear, decision-ready visuals in Power BI—focused on signal over noise.
+              </p>
+            </div>
+
+              <!-- Automation -->
+              <div class="col text-center px-4">
+                <i class="bi bi-code-square interest-icon"></i>
+                <h3 class="h6 mt-3 mb-2">Automation of data processes</h3>
+                <p class="mb-0 small text-muted">
+                  Streamlining data processes through coding and Python to reduce manual work and ensure consistency.
+                </p>
+              </div>
+
+
+            <!-- Collaboration & Creating Value -->
+            <div class="col text-center px-4">
+              <i class="bi bi-people interest-icon"></i>
+              <h3 class="h6 mt-3 mb-2">Collaboration & Value Creation</h3>
+              <p class="mb-0 small text-muted">
+                Partnering with teams across the organization to ensure they have the insights and data needed to deliver value.
+              </p>
+            </div>
+          </div>
+
+          <!-- Second row -->
+          <div class="row row-cols-1 row-cols-md-3 g-5 mt-4">
+
+
+            <!-- Data Storytelling -->
+            <div class="col text-center px-4">
+              <i class="bi bi-journal-text interest-icon"></i>
+              <h3 class="h6 mt-3 mb-2">Data Storytelling</h3>
+              <p class="mb-0 small text-muted">
+                Communicating complex findings clearly and visually so that stakeholders can act with confidence.
+              </p>
+            </div>
+
+            <!-- Problem Solving -->
+            <div class="col text-center px-4">
+              <i class="bi bi-lightbulb interest-icon"></i>
+              <h3 class="h6 mt-3 mb-2">Problem Solving</h3>
+              <p class="mb-0 small text-muted">
+                Tackling challenges with creativity and structure—turning data into actionable solutions.
+              </p>
+            </div>
+
+            <!-- Metrics & Decision Support -->
+            <div class="col text-center px-4">
+              <i class="bi bi-clipboard-data interest-icon"></i>
+              <h3 class="h6 mt-3 mb-2">Metrics & Decision Support</h3>
+              <p class="mb-0 small text-muted">
+                Defining useful metrics and surfacing insights that help teams act with confidence.
+              </p>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+
+    </div>
+  </section>
+</Layout>

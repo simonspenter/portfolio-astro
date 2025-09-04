@@ -1,0 +1,60 @@
+---
+import Layout from "../../layouts/Layout.astro";
+---
+
+<Layout title="Flamme Rouge Scoreboard">
+  <section class="py-5">
+    <div class="container">
+
+      <!-- Title & Intro -->
+      <div class="text-center mb-5">
+        <h1 class="mb-2">Flamme Rouge Scoreboard</h1>
+        <p class="text-muted mt-2">
+          A fan-built Flask web app for the Flamme Rouge board game that allows players to run multi-stage races with clean tracking of GC, sprints, and mountain classifications.
+        </p>
+      </div>
+
+      <!-- Overview & Live Link -->
+      <div class="row g-4 mb-5">
+        <div class="col-12 col-lg-7">
+          <h2 class="h5">Overview</h2>
+          <p>
+            The app lets users create a race, record stage results, and automatically compute general classification (GC), sprint, and mountain standings.
+            You can define race stages, enter results, and continue multi-stage play using a generated race ID.
+          </p>
+          <p>
+            Try it live:  
+            <a href="https://flamme-rouge-app-gsdbg0cudsh7cpat.northeurope-01.azurewebsites.net/" target="_blank" rel="noopener">
+              Launch the Flamme Rouge Scoreboard on Azure
+            </a>.
+          </p>
+        </div>
+        <div class="col-12 col-lg-5">
+          <h2 class="h5">Tech & Tools</h2>
+          <ul class="mb-0">
+            <li><strong>Backend:</strong> Flask (Python), session management, Jinja2 templates</li>
+            <li><strong>Database:</strong> PostgreSQL hosted on Azure for secure race/team data storage</li>
+            <li><strong>Frontend:</strong> HTML/CSS, JavaScript for dynamic forms (e.g. entering results)</li>
+            <li><strong>Deployment:</strong> Azure App Service</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Features -->
+      <div class="mb-5">
+        <h3 class="h5 mb-3">Key Features</h3>
+        <ul>
+          <li>Multi-stage race creation and result tracking</li>
+          <li>Automatic GC, sprint, and mountain classification scoring</li>
+          <li>Optional advanced rules: point systems, assistant riders, time trials, “good day/bad day” modifiers</li>
+          <li>Stage continuation via unique Race ID stored across sessions</li>
+        </ul>
+      </div>
+
+      <!-- Back to Projects -->
+      <div class="text-center mt-5">
+        <a class="btn btn-outline-secondary" href="/projects/">← Back to Projects</a>
+      </div>
+    </div>
+  </section>
+</Layout>

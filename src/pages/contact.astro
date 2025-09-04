@@ -1,0 +1,99 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="Contact Simon">
+  <section class="py-5">
+    <div class="container">
+
+      <!-- header -->
+      <div class="text-center mb-5">
+        <h1 class="mb-2">Let’s connect</h1>
+        <p class="text-muted">
+          Whether it’s dashboards, data pipelines, or product analytics—feel free to reach out.
+        </p>
+      </div>
+
+      <div class="row g-5 align-items-start">
+        <!-- Left: primary contact card -->
+        <div class="col-12 col-lg-6">
+          <div class="contact-card p-4 p-md-5 h-100">
+            <h2 class="h5 mb-4">Get in touch</h2>
+
+            <div class="d-flex align-items-center mb-3">
+              <i class="bi bi-envelope me-3 fs-4 text-accent"></i>
+              <a class="link-underline-hover" href="mailto:simonspenter@gmail.com">
+                simonspenter@gmail.com
+              </a>
+            </div>
+
+            <div class="d-flex align-items-center mb-4">
+              <i class="bi bi-telephone me-3 fs-4 text-accent"></i>
+              <a class="link-underline-hover" href="tel:+4540216824">
+                +45 40 21 68 24
+              </a>
+            </div>
+
+            <div class="d-flex flex-wrap gap-3">
+              <a
+                class="btn social-btn linkedin"
+                href="https://www.linkedin.com/in/simon-ifversen" target="_blank" rel="noopener"
+                aria-label="LinkedIn"
+              >
+                <i class="bi bi-linkedin me-2"></i> LinkedIn
+              </a>
+              <a
+                class="btn social-btn github"
+                href="https://github.com/SimonIfversen" target="_blank" rel="noopener"
+                aria-label="GitHub"
+              >
+                <i class="bi bi-github me-2"></i> GitHub
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: quick note (mailto form) -->
+        <div class="col-12 col-lg-6">
+          <div class="contact-card p-4 p-md-5 h-100">
+            <h2 class="h5 mb-4">Send a quick note</h2>
+            <p class="small text-muted mb-4">
+              This simple form opens your default email client with the details filled in.
+            </p>
+
+            <form
+              onsubmit={`window.location.href = 'mailto:simonspenter@gmail.com'
+                + '?subject=' + encodeURIComponent(document.getElementById('msg-subject').value)
+                + '&body=' + encodeURIComponent(document.getElementById('msg-body').value);
+                return false;`}
+            >
+              <div class="mb-3">
+                <label for="msg-subject" class="form-label">Subject</label>
+                <input id="msg-subject" type="text" class="form-control" placeholder="Project idea, collaboration, etc." />
+              </div>
+              <div class="mb-4">
+                <label for="msg-body" class="form-label">Message</label>
+                <textarea id="msg-body" rows="6" class="form-control" placeholder="Tell me a bit about what you need…"></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary">Open email</button>
+            </form>
+
+            <hr class="my-4" />
+
+            <p class="small text-muted mb-0">
+              Prefer direct email? <a href="mailto:simonspenter@gmail.com">simonspenter@gmail.com</a>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- subtle help text -->
+      <div class="text-center mt-5">
+        <p class="text-muted small">
+          P.S. I’m also happy to jump on a quick call—just suggest a time in your message.
+        </p>
+      </div>
+
+    </div>
+  </section>
+</Layout>

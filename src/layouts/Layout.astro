@@ -1,0 +1,129 @@
+---
+const { title = "Simons Computer Science Portfolio" } = Astro.props;
+const path = Astro.url.pathname; // e.g. "/", "/projects/"
+const isActive = (p) => path === p || (p !== "/" && path.startsWith(p));
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
+      crossorigin="anonymous"
+    />
+
+    <!-- Google Font (Montserrat) -->
+    <link 
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600&display=swap" 
+      rel="stylesheet"
+    />
+
+    <!-- Another Google Font (Montserrat) -->
+    <link 
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600&family=Raleway:wght@700&display=swap" 
+    rel="stylesheet">
+
+
+    <!-- Bootstrap icons -->
+    <link 
+    rel="stylesheet" 
+    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+
+
+    <!-- Your global styles -->
+    <link rel="stylesheet" href="/styles.css" />
+
+    <!-- Bootstrap JS -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+      crossorigin="anonymous"
+      defer
+    ></script>
+  </head>
+
+
+  <body>
+    <header class="container py-3">
+      <nav class="d-flex align-items-center">
+        <div class="me-auto">
+          <h1 class="mb-0">Simon Spenter Ifversen</h1>
+          <h2 class="fs-5 site-subtitle">Data Analyst</h2>
+        </div>
+
+        <!-- was: nav nav-tabs -->
+        <ul class="main-nav ms-auto">
+          <li class="nav-item">
+            <a class={`nav-link ${isActive("/") ? "active" : ""}`} href="/">Home</a>
+          </li>
+
+          <li class="nav-item dropdown split-dropdown">
+            <!-- Clicking this navigates to /projects -->
+            <a
+              class={`nav-link ${isActive("/projects") ? "active" : ""}`}
+              href="/projects/"
+            >
+              Projects
+            </a>
+
+            <!-- Chevron arrow toggles the dropdown (no Bootstrap styling) -->
+            <a
+              class="nav-link dropdown-arrow"
+              href="#"
+              id="projectsDropdown"
+              role="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+              aria-label="Toggle projects menu"
+            >
+              <i class="bi bi-chevron-down small"></i>
+            </a>
+
+
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="projectsDropdown">
+              <li><a class="dropdown-item" href="/projects/pleaz_powerbi/">Pleaz PowerBI Dashboard</a></li>
+              <li><a class="dropdown-item" href="/projects/flamme_rouge_app/">Flamme Rouge Scoreboard</a></li>
+              <li><a class="dropdown-item" href="/projects/dst_data_script/">Data Manipulation Script</a></li>
+              <li><a class="dropdown-item" href="/projects/arbitrage_finder/">Arbitrage Bet Finder</a></li>
+
+
+            </ul>
+          </li>
+
+
+
+          <li class="nav-item">
+            <a class={`nav-link ${isActive("/courses") ? "active" : ""}`} href="/courses/">Courses</a>
+          </li>
+          <li class="nav-item">
+            <a class={`nav-link ${isActive("/contact") ? "active" : ""}`} href="/contact/">Contact</a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+
+
+
+    <main class="container py-4">
+      <slot />
+    </main>
+
+    <footer class="container py-4 border-top">
+      <p class="mb-0">© 2025 My Portfolio</p>
+    </footer>
+
+    <script src="/js/nav.js" defer></script>
+
+
+  </body>
+
+  
+</html>

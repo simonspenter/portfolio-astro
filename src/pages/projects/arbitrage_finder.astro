@@ -1,0 +1,62 @@
+---
+import Layout from "../../layouts/Layout.astro";
+---
+
+<Layout title="Arbitrage Bet Finder">
+  <section class="py-5">
+    <div class="container">
+
+      <!-- Title + intro -->
+      <div class="text-center mb-5">
+        <h1 class="mb-2">Arbitrage Bet Finder</h1>
+        <p class="text-muted">
+          A Flask web app that integrates with The Odds API to identify sports betting arbitrage opportunities — built to practice API integration, backend–frontend communication, and interactive dashboards.
+        </p>
+      </div>
+
+      <!-- Role / Tools -->
+      <div class="row g-4 mb-5">
+        <div class="col-12 col-lg-7">
+          <h2 class="h5">Overview</h2>
+          <p>
+            The app fetches pre-game odds from multiple bookmakers and highlights situations where price differences 
+            allow for a guaranteed margin. Users can filter by sport, bookmaker region, and market type, 
+            and results update dynamically without reloading the page.
+          </p>
+          <p>
+            You can try the live app here:  
+            <a href="https://arbitrage-bet-finder-fhhpangwbcfyd7br.northeurope-01.azurewebsites.net/" target="_blank" rel="noopener">
+              Arbitrage Bet Finder on Azure
+            </a>.
+          </p>
+        </div>
+        <div class="col-12 col-lg-5">
+          <h2 class="h5">Tech & Tools</h2>
+          <ul class="mb-0">
+            <li><strong>Backend:</strong> Flask (Python), session handling, dotenv for API keys</li>
+            <li><strong>Frontend:</strong> Jinja templates, HTML/CSS, vanilla JavaScript (fetch API)</li>
+            <li><strong>Data:</strong> REST API integration with The Odds API</li>
+            <li><strong>Deployment:</strong> Azure App Service (with modular Flask routes & environment-based config)</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Features -->
+      <div class="mb-5">
+        <h3 class="h5 mb-3">Key Features</h3>
+        <ul>
+          <li>Fetches and compares bookmaker odds across sports like soccer, basketball, and tennis</li>
+          <li>Detects arbitrage opportunities and calculates potential profit margins</li>
+          <li>Dynamic filtering by sport, market, and region with live updates</li>
+          <li>Simple, responsive UI built with Jinja templates and Bootstrap styling</li>
+        </ul>
+      </div>
+
+      <!-- Back to projects -->
+      <div class="text-center mt-5">
+        <a class="btn btn-outline-secondary" href="/projects/">← Back to Projects</a>
+      </div>
+
+    </div>
+  </section>
+</Layout>
