@@ -9,8 +9,10 @@ import Layout from "../../layouts/Layout.astro";
       <!-- Title & Intro -->
       <div class="text-center mb-5">
         <h1 class="mb-2">Flamme Rouge Scoreboard</h1>
-        <p class="text-muted mt-2">
-          A fan-built Flask web app for the Flamme Rouge board game that allows players to run multi-stage races with clean tracking of GC, sprints, and mountain classifications.
+        <p class="text-muted mt-1">
+          This web app is a personal side project built around <a href="https://boardgamegeek.com/boardgame/199478/flamme-rouge" target="_blank" rel="noopener">Flamme Rouge</a>, 
+          a cycling board game my friends and I enjoy playing. The app acts as a scoreboard for multi-stage races, storing results and standings across sessions.  
+          I built it to practice end-to-end development: from designing the database and backend logic to building the frontend and deploying the finished product.
         </p>
       </div>
 
@@ -19,8 +21,9 @@ import Layout from "../../layouts/Layout.astro";
         <div class="col-12 col-lg-7">
           <h2 class="h5">Overview</h2>
           <p>
-            The app lets users create a race, record stage results, and automatically compute general classification (GC), sprint, and mountain standings.
-            You can define race stages, enter results, and continue multi-stage play using a generated race ID.
+            The app lets users create races, record stage results, and automatically compute general classification (GC), sprint, and mountain standings.  
+            Results are saved using a unique race ID, so players can continue their race over multiple sessions.  
+            Data is stored in a PostgreSQL database hosted on Azure, which I set up and manage myself. 
           </p>
           <p>
             Try it live:  

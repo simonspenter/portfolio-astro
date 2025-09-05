@@ -8,219 +8,92 @@ import Layout from "../../layouts/Layout.astro";
 
       <!-- Title + intro -->
       <div class="text-center mb-7">
-        <h1 class="mb-3">DST Data Processing Scripts</h1>
+        <h1 class="mb-3">Data Processing Scripts on Statistics Denmark's server</h1>
+
         <p class="text-muted">
-          At the Agency for Digital Government, I contributed to an annual research project on citizens’ 
+          At the Agency for Digital Government, one of my team’s main tasks was to analyze Danish citizens’ 
           <a href="https://digst.dk/digital-transformation/tilliden-til-den-digitale-offentlige-sektor/" target="_blank" rel="noopener">trust in the digital public sector</a>.  
-          Each year, large-scale survey data was collected and combined with background registers from Statistics Denmark (DST).
+          Each year, we conducted a nation wide survey and published a  
+          <a href="https://digst.dk/media/aw4jrlpu/tilliden-til-den-digitale-offentlige-sektor-2023.pdf" target="_blank" rel="noopener">report</a> with the findings. 
         </p>
         <p class="text-muted">
-          To prepare these datasets for analysis and publication — including the report 
-          <a href="https://digst.dk/media/10npmhxa/borgernes-moede-med-den-digitale-offentlige-sektor-med-fokus-paa-dem-der-oplever-udfordringer.pdf" target="_blank" rel="noopener">“Citizens’ encounter with the digital public sector”</a> — 
-          I built a series of Python scripts that automated the processing pipeline.  
-          These scripts ensured data quality, consistency, and efficiency in getting from raw survey results to the analysis-ready datasets used in official reporting.
+          Previously, we had to pay Statistics Denmark (DST) to extract or prepare data for analysis.  
+          I designed and built a set of Python scripts that automated the full processing pipeline, enabling us to access the data ourselves.  
+          This gave our team direct control of the data and reduced the time and cost of producing the analysis-ready datasets used for the reports.
         </p>
       </div>
 
-      <!-- Two-column: LEFT (Overview+Tech+badges) | RIGHT (Accordion with code) -->
+      <!-- Overview + Tech -->
       <div class="row g-5 mb-7 align-items-start">
-        <!-- LEFT -->
         <div class="col-12 col-lg-6">
-          <h2 class="h5">Overview</h2>
+          <h2 class="h5">Overview & My Role</h2>
           <p>
-            The scripts streamlined the workflow on DST’s research server by automating repetitive tasks.  
-            They handled dataset merging, recoding of variables, and export of descriptive statistics, reducing 
-            manual workload and ensuring results were reproducible year over year.
+            I designed the technical setup that enabled our team to efficiently prepare data for analysis.  
+            This included planning the workflow, structuring the scripts, and building checks to ensure outputs could be reused reliably year over year.  
+            The scripts automated the core steps: merging survey data with DST registers, recoding variables, and producing export tables for analysis and reporting.  
           </p>
-
-          <h2 class="h5 mt-4">Tech & Tools</h2>
+          <ul class="mb-0">
+            <li><strong>My role:</strong> workflow planning, script development, QA checks</li>
+            <li><strong>Impact:</strong> faster data preparation, consistent outputs across survey years, reduced manual workload</li>
+          </ul>
+        </div>
+        <div class="col-12 col-lg-6">
+          <h2 class="h5">Tech & Tools</h2>
           <ul class="mb-3">
             <li><strong>Language:</strong> Python (pandas, NumPy)</li>
             <li><strong>Environment:</strong> Jupyter Notebooks on DST Research Server</li>
             <li><strong>Outputs:</strong> Clean datasets & structured crosstabs for reporting</li>
           </ul>
-
-          <!-- Quick badges -->
-          <div class="d-flex flex-wrap gap-2 mt-3">
-            <span class="badge border">4 notebooks</span>
-            <span class="badge border">ETL + Recoding + Exports</span>
-            <span class="badge border">Reproducible workflow</span>
-          </div>
-        </div>
-
-        <!-- RIGHT -->
-        <div class="col-12 col-lg-6">
-          <h2 class="h5 mb-3">Script Snippets</h2>
-          <div class="accordion" id="dstNotebooks">
-
-            <!-- 1) Merge -->
-            <div class="accordion-item">
-              <h2 class="accordion-header" id="nb1h">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#nb1" aria-expanded="false" aria-controls="nb1">
-                  1) Merging main dataset with DST registers
-                </button>
-              </h2>
-              <div id="nb1" class="accordion-collapse collapse" aria-labelledby="nb1h" data-bs-parent="#dstNotebooks">
-                <div class="accordion-body">
-                  <p class="small text-muted mb-3">Validates keys and time alignment, then creates a clean base table.</p>
-                  <pre><code class="language-python">{`
-import pandas as pd
-
-# Load data
-survey   = pd.read_parquet("survey.parquet")
-register = pd.read_parquet("dst_register.parquet")
-
-# Merge
-base = survey.merge(
-    register,
-    on=["person_id","year"],
-    how="left",
-    validate="m:1"
-)
-
-# Basic QA
-print("Rows:", len(base))
-print("Missing IDs:", base["person_id"].isna().sum())
-print("Years covered:", base["year"].unique())
-                  `}</code></pre>
-                </div>
-              </div>
-            </div>
-
-            <!-- 2) Recodes -->
-            <div class="accordion-item">
-              <h2 class="accordion-header" id="nb2h">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#nb2" aria-expanded="false" aria-controls="nb2">
-                  2) Recoding variables using mapping files
-                </button>
-              </h2>
-              <div id="nb2" class="accordion-collapse collapse" aria-labelledby="nb2h" data-bs-parent="#dstNotebooks">
-                <div class="accordion-body">
-                  <p class="small text-muted mb-3">Creates analysis-ready groupings (age bands, regions, education, etc.).</p>
-                  <pre><code class="language-python">{`
-# Age bands
-age_bins  = [0,24,34,44,54,64,200]
-age_lbls  = ["<25","25–34","35–44","45–54","55–64","65+"]
-base["age_band"] = pd.cut(base["age"], bins=age_bins, labels=age_lbls)
-
-# Region mapping
-region_map = {1:"Hovedstaden",2:"Sjælland",3:"Syddanmark",4:"Midtjylland",5:"Nordjylland"}
-base["region"] = base["region_code"].map(region_map).fillna("Ukendt")
-
-# Education recode
-edu_map = {1:"Primary",2:"Secondary",3:"Vocational",4:"Tertiary"}
-base["education_recoded"] = base["edu_code"].map(edu_map)
-
-# Example sanity check
-print(base[["age_band","region","education_recoded"]].head())
-                  `}</code></pre>
-                </div>
-              </div>
-            </div>
-
-            <!-- 3) Background crosstabs -->
-            <div class="accordion-item">
-              <h2 class="accordion-header" id="nb3h">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#nb3" aria-expanded="false" aria-controls="nb3">
-                  3) Export Crosstabs to Excel using one main variable and all background variables
-                </button>
-              </h2>
-              <div id="nb3" class="accordion-collapse collapse" aria-labelledby="nb3h" data-bs-parent="#dstNotebooks">
-                <div class="accordion-body">
-                  <p class="small text-muted mb-3">Produces aggregated counts/% for key background variables.</p>
-                  <pre><code class="language-python">{`
-# Gender x Employment
-ct1 = pd.crosstab(base["gender"], base["employment"], normalize="index")
-ct1.to_csv("outputs/crosstab_gender_employment.csv")
-
-# Region x Age Band
-ct2 = pd.crosstab(base["region"], base["age_band"], normalize="index")
-ct2.to_csv("outputs/crosstab_region_age.csv")
-
-# Education x Income
-ct3 = pd.crosstab(base["education_recoded"], base["income_group"])
-ct3.to_csv("outputs/crosstab_edu_income.csv")
-                  `}</code></pre>
-                </div>
-              </div>
-            </div>
-
-            <!-- 4) Stakeholder-specific -->
-            <div class="accordion-item">
-              <h2 class="accordion-header" id="nb4h">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#nb4" aria-expanded="false" aria-controls="nb4">
-                  4) Export Crosstabs to Excel using two variables from the main dataset
-                </button>
-              </h2>
-              <div id="nb4" class="accordion-collapse collapse" aria-labelledby="nb4h" data-bs-parent="#dstNotebooks">
-                <div class="accordion-body">
-                  <p class="small text-muted mb-3">Targets a specific output format for collaboration/briefing needs.</p>
-                  <pre><code class="language-python">{`
-# Treatment group vs. outcome variable
-out1 = pd.crosstab(base["treatment_group"], base["outcome_variable"])
-out1.to_excel("outputs/treatment_vs_outcome.xlsx")
-
-# Subsetting specific partners' data
-partners = ["MunicipalityA","MunicipalityB"]
-subset = base[base["partner"].isin(partners)]
-
-# Crosstab by partner and digital use frequency
-out2 = pd.crosstab(subset["partner"], subset["use_frequency"], normalize="index")
-out2.to_csv("outputs/partner_usage.csv")
-                  `}</code></pre>
-                </div>
-              </div>
-            </div>
-
-          </div>
         </div>
       </div>
 
-      <!-- Process overview (full width below) -->
+      <!-- Process overview -->
       <div class="mb-7">
         <h3 class="h5 text-center mb-5">Process Overview</h3>
-
         <div class="row row-cols-1 row-cols-md-3 g-4 process-flow text-center">
+          
           <!-- Step 1 -->
           <div class="col">
             <div class="process-step h-100 p-4">
               <div class="process-icon mb-3">
                 <i class="bi bi-download"></i>
               </div>
-              <h4 class="h6 mb-3">Import & Merge</h4>
+              <h4 class="h6 mb-3">Process Data</h4>
               <p class="small text-muted mb-0">
-                Load project data and DST registers, then validate joins (keys, year) for a clean base dataset.
+                Combine survey results with DST register data and prepare a validated dataset for analysis.
               </p>
             </div>
           </div>
-
+          
           <!-- Step 2 -->
           <div class="col">
             <div class="process-step h-100 p-4">
               <div class="process-icon mb-3">
                 <i class="bi bi-sliders"></i>
               </div>
-              <h4 class="h6 mb-3">Recode Variables</h4>
+              <h4 class="h6 mb-3">Export Datasets</h4>
               <p class="small text-muted mb-0">
-                Standardize categories (e.g., age bands, regions, education) to enable consistent analysis.
+                Produce descriptive tables (crosstabs, distributions) and structured datasets in CSV.
               </p>
             </div>
           </div>
-
+          
           <!-- Step 3 -->
           <div class="col">
             <div class="process-step h-100 p-4">
               <div class="process-icon mb-3">
-                <i class="bi bi-file-earmark-spreadsheet"></i>
+                <i class="bi bi-file-earmark-text"></i>
               </div>
-              <h4 class="h6 mb-3">Export Outputs</h4>
+              <h4 class="h6 mb-3">Create Reporting</h4>
               <p class="small text-muted mb-0">
-                Generate crosstabs (counts/%) and write CSV/XLSX tables for sharing and downstream analysis.
+                Analyze survey results using the the prepared datasets and publish the official trust report.
               </p>
             </div>
           </div>
+          
         </div>
       </div>
+
 
       <!-- Back button -->
       <div class="text-center mt-7">

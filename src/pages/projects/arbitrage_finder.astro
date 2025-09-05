@@ -9,22 +9,29 @@ import Layout from "../../layouts/Layout.astro";
       <!-- Title + intro -->
       <div class="text-center mb-5">
         <h1 class="mb-2">Arbitrage Bet Finder</h1>
-        <p class="text-muted">
-          A Flask web app that integrates with The Odds API to identify sports betting arbitrage opportunities — built to practice API integration, backend–frontend communication, and interactive dashboards.
+        <p class="text-muted mt-1">
+          This is a small web app I built in my spare time to explore how to work with external APIs 
+          and practice connecting a backend with a frontend. The app fetches betting odds from 
+          <a href="https://the-odds-api.com" target="_blank" rel="noopener">The Odds API</a> and highlights potential arbitrage opportunities — situations where differences 
+          between bookmakers’ odds could allow for a risk-free profit.  
         </p>
       </div>
 
-      <!-- Role / Tools -->
+      <!-- Overview & Live Link -->
       <div class="row g-4 mb-5">
         <div class="col-12 col-lg-7">
           <h2 class="h5">Overview</h2>
           <p>
-            The app fetches pre-game odds from multiple bookmakers and highlights situations where price differences 
-            allow for a guaranteed margin. Users can filter by sport, bookmaker region, and market type, 
-            and results update dynamically without reloading the page.
+            The app lets users choose a sport, bookmaker region, and market type, then dynamically fetches and compares 
+            odds across multiple bookmakers. If the odds line up, the app calculates whether a guaranteed margin exists. 
+            Results update live without reloading the page.  
           </p>
           <p>
-            You can try the live app here:  
+            While the app is fully functional, I haven’t used it for actual betting — the most profitable 
+            opportunities tend to come from bookmakers I wouldn’t personally trust.  
+          </p>
+          <p>
+            Try it live:  
             <a href="https://arbitrage-bet-finder-fhhpangwbcfyd7br.northeurope-01.azurewebsites.net/" target="_blank" rel="noopener">
               Arbitrage Bet Finder on Azure
             </a>.
@@ -36,7 +43,7 @@ import Layout from "../../layouts/Layout.astro";
             <li><strong>Backend:</strong> Flask (Python), session handling, dotenv for API keys</li>
             <li><strong>Frontend:</strong> Jinja templates, HTML/CSS, vanilla JavaScript (fetch API)</li>
             <li><strong>Data:</strong> REST API integration with The Odds API</li>
-            <li><strong>Deployment:</strong> Azure App Service (with modular Flask routes & environment-based config)</li>
+            <li><strong>Deployment:</strong> Azure App Service</li>
           </ul>
         </div>
       </div>
@@ -48,7 +55,7 @@ import Layout from "../../layouts/Layout.astro";
           <li>Fetches and compares bookmaker odds across sports like soccer, basketball, and tennis</li>
           <li>Detects arbitrage opportunities and calculates potential profit margins</li>
           <li>Dynamic filtering by sport, market, and region with live updates</li>
-          <li>Simple, responsive UI built with Jinja templates and Bootstrap styling</li>
+          <li>Lightweight, responsive UI built with Jinja templates and Bootstrap styling</li>
         </ul>
       </div>
 
