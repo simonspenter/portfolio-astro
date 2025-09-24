@@ -11,7 +11,8 @@ import Layout from "../../layouts/Layout.astro";
         <h1 class="mb-2">Flamme Rouge Scoreboard</h1>
         <p class="text-muted mt-1">
           This web app is a personal side project built around <a href="https://boardgamegeek.com/boardgame/199478/flamme-rouge" target="_blank" rel="noopener">Flamme Rouge</a>, 
-          a cycling board game my friends and I enjoy playing. The app acts as a scoreboard for multi-stage races, storing results and standings across sessions.  
+          a cycling board  my friends and I enjoy playing. 
+          The app acts as a scoreboard for multi-stage races, storing results and standings across sessions.  
           I built it to practice end-to-end development: from designing the database and backend logic to building the frontend and deploying the finished product.
         </p>
       </div>
@@ -21,15 +22,19 @@ import Layout from "../../layouts/Layout.astro";
         <div class="col-12 col-lg-7">
           <h2 class="h5">Overview</h2>
           <p>
-            The app lets users create races, record stage results, and automatically compute general classification (GC), sprint, and mountain standings.  
-            Results are saved using a unique race ID, so players can continue their race over multiple sessions.  
-            Data is stored in a PostgreSQL database hosted on Azure, which I set up and manage myself. 
+            After having played the original game a couple of nights with my friends, we felt the game was missing the opportunity to race across multiple stages, like they do in Tour de France.
+            So we created rules for a Grand Tour concept, with sprint and mountain points, time trials and much more. 
+            However, it was hard to keep track of all this in an Excel spreadsheet and I wanted to get some experience with web developing, so I decided to create this web-app.
+
+            
+            The app lets users create races, record stage results, and automatically compute classement, sprint, and mountain standings.  
+            Results are stored across 8 related tables in a PostgreSQL database hosted on Azure, which I set up and manage myself, so players can continue their race over multiple sessions.  
           </p>
           <p>
-            Try it live:  
+            Try the app:  
             <a href="https://flamme-rouge-app-gsdbg0cudsh7cpat.northeurope-01.azurewebsites.net/" target="_blank" rel="noopener">
-              Launch the Flamme Rouge Scoreboard on Azure
-            </a>.
+              Launch the Flamme Rouge Scoreboard on Azure.
+            </a>
           </p>
         </div>
         <div class="col-12 col-lg-5">
@@ -48,7 +53,7 @@ import Layout from "../../layouts/Layout.astro";
         <h3 class="h5 mb-3">Key Features</h3>
         <ul>
           <li>Multi-stage race creation and result tracking</li>
-          <li>Automatic GC, sprint, and mountain classification scoring</li>
+          <li>Automatic classement, sprint, and mountain classification scoring</li>
           <li>Optional advanced rules: point systems, assistant riders, time trials, “good day/bad day” modifiers</li>
           <li>Stage continuation via unique Race ID stored across sessions</li>
         </ul>
